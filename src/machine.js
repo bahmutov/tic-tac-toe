@@ -97,4 +97,6 @@ const ticTacToeMachine = Machine(
   }
 );
 
+// module.exports = { ticTacToeMachine };
 export { ticTacToeMachine };
+

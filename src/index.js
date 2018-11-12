@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-
-import { ticTacToeMachine } from "./machine";
-import { interpret } from "xstate/lib/interpreter";
 import styled from "styled-components";
+import { interpret } from "xstate/lib/interpreter";
+import { ticTacToeMachine } from "./machine";
 import "./styles.css";
+
 
 function range(start, end) {
   return Array(end - start)
