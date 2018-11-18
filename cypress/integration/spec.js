@@ -36,6 +36,9 @@ const play = (pathConfig) => {
   }
 }
 
+const winnerXPath = shortestValuePaths[winnerX[0]]
+const winnerOPath = shortestValuePaths[winnerO[0]]
+
 describe('Tic Tac Toe', () => {
   beforeEach(() => {
     cy.visit('/')
@@ -44,27 +47,25 @@ describe('Tic Tac Toe', () => {
   })
 
   it('player X wins', () => {
-    const pathConfig = shortestValuePaths[winnerX[0]]
-    play(pathConfig)
+    play(winnerXPath)
     cy.contains('h2', 'Player X wins!')
   })
 
   it('player O wins', () => {
-    const pathConfig = shortestValuePaths[winnerO[0]]
-    play(pathConfig)
+    play(winnerOPath)
     cy.contains('h2', 'Player O wins!')
   })
 
-  draws.forEach((targetStateString, k) => {
+  draws.forEach((draw, k) => {
     it(`plays to a draw ${k}`, () => {
-      const pathConfig = shortestValuePaths[targetStateString]
-      console.log('testing', pathConfig)
-
-      play(pathConfig)
-
-      // now we should get a draw message
+      const drawPath = shortestValuePaths[draw]
+      play(drawPath)
       cy.contains('h2', 'Draw')
-
     })
   })
+})
+
+// makes the end of the video better
+after(() => {
+  cy.wait(2000, {log: false})
 })
